@@ -17,19 +17,14 @@ doParallel::registerDoParallel(cl, cores = cores)
 
 ## ---- PARAMETERS ------------------------------------------------------------
 
-# all combinations of the model parameters will be run
+# all combinations of the given model parameters will be run
 model_parameters <- list(
-d1 = 5,
-d2 = 6,
-p1 = 20,
-p2 = 25,
+d = 5,
+p = 30,
 n = 2000,
-sds = seq(from = 0.2,
+sd = seq(from = 0.2,
           to = 3,
-          length.out = 20),
-data_dists = c("norm", "t"),
-err_dists = c("norm", "t"),
-method = c("orth bs", "asymp no norm")
+          length.out = 20)
 )
 
 m <- 1000 # number of simulations for each setup
@@ -62,5 +57,5 @@ for(i in 1:length(index_groups)){
     1 # add function that takes it as input and returns a single numeric value
   }
   res_grid[index_groups[[i]],"res"] <- ret
-  saveRDS(resgrid, file=paste0("results/", simulation_name))
+  saveRDS(resgrid, file=paste0("results/", simulation_name, ".R"))
 }
